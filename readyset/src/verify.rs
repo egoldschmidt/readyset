@@ -299,7 +299,7 @@ async fn verify_permissions(conn: &mut DatabaseConnection, options: &Options) ->
                         conn,
                         "SELECT rolname FROM pg_roles WHERE \
                            pg_has_role(CURRENT_USER, rolname, 'member') AND \
-                           rolname = 'rds_superuser'",
+                           rolname = ('rds_superuser', 'neon_superuser')",
                     )
                     .await;
                     has_super.is_ok()
